@@ -90,12 +90,11 @@ async def next_page(bot, query):
     else:
         off_set = offset - 10
 
-    # How to Download button
+    # How to Download Button
 
     btn.append(
-    [InlineKeyboardButton("‼️ How To Download ‼️", url="https://telegram.me/HEROFLiX/1020"),]
+    [InlineKeyboardButton("❓ How To Download ❓", url="https://telegram.me/HEROFLiX/1020"),]
 )
-
 
     if n_offset == 0:
         btn.append(
@@ -103,17 +102,39 @@ async def next_page(bot, query):
              InlineKeyboardButton(f"📚 Pages {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
                                   callback_data="pages")]
         )
+
+    # How to Download Button
+
+    btn.append(
+    [InlineKeyboardButton("❓ How To Download ❓", url="https://telegram.me/HEROFLiX/1020"),]
+)
+
+    
     elif off_set is None:
         btn.append(
             [InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
              InlineKeyboardButton(f"📚 Pages {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}",
                                   callback_data="pages")]
         )
+
+    # How to Download Button
+
+    btn.append(
+    [InlineKeyboardButton("❓ How To Download ❓", url="https://telegram.me/HEROFLiX/1020"),]
+)
+
     elif off_set is None:
         btn.append(
             [InlineKeyboardButton(f"📚 {math.ceil(int(offset) / 10) + 1} / {math.ceil(total / 10)}", callback_data="pages"),
              InlineKeyboardButton("NEXT ⏩", callback_data=f"next_{req}_{key}_{n_offset}")])
-    else:
+
+    # How to Download Button
+
+    btn.append(
+    [InlineKeyboardButton("❓ How To Download ❓", url="https://telegram.me/HEROFLiX/1020"),]
+)
+
+     else:
         btn.append(
             [
                 InlineKeyboardButton("⏪ BACK", callback_data=f"next_{req}_{key}_{off_set}"),
@@ -134,14 +155,14 @@ async def next_page(bot, query):
 async def advantage_spoll_choker(bot, query):
     _, user, movie_ = query.data.split('#')
     if int(user) != 0 and query.from_user.id != int(user):
-        return await query.answer("okDa", show_alert=True)
+        return await query.answer("♨ It's Not For You ♨", show_alert=True)
     if movie_ == "close_spellcheck":
         return await query.message.delete()
     movies = SPELL_CHECK.get(query.message.reply_to_message.id)
     if not movies:
         return await query.answer("♨ Link Expired, Please Request Again ♻", show_alert=True)
     movie = movies[(int(movie_))]
-    await query.answer('Checking for Movie in database...')
+    await query.answer('Checking in database...')
     k = await manual_filters(bot, query.message, text=movie)
     if k == False:
         files, offset, total_results = await get_search_results(movie, offset=0, filter=True)
@@ -421,7 +442,7 @@ async def cb_handler(client: Client, query: CallbackQuery):
             InlineKeyboardButton('➕ Add Me To Your Group ➕', url=f'http://t.me/{temp.U_NAME}?startgroup=true')
         ], [
             InlineKeyboardButton('🔍 Search', switch_inline_query_current_chat=''),
-            InlineKeyboardButton('🤖 Updates', url='https://t.me/HeroFlix')
+            InlineKeyboardButton('🤖 Updates', url='https://telegram.me/HeroFlix')
         ], [
             InlineKeyboardButton('ℹ️ Help', callback_data='help'),
             InlineKeyboardButton('😊 About', callback_data='about')
